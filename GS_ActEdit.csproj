@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B31B727-D1D0-4F5A-9A81-90DD92D322B9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GS_ActEdit</RootNamespace>
+    <AssemblyName>GS_ActEdit</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DDS\DDSImage.cs" />
+    <Compile Include="FormActFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormActFile.Designer.cs">
+      <DependentUpon>FormActFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Format\AbstractActLayoutObject.cs" />
+    <Compile Include="Format\AbstractActResourceObject.cs" />
+    <Compile Include="Format\AbstractResourceInfoObject.cs" />
+    <Compile Include="Format\Act2DMapLayoutObject.cs" />
+    <Compile Include="Format\ActFile.cs" />
+    <Compile Include="Format\ActKeyObject.cs" />
+    <Compile Include="Format\ActLayerObject.cs" />
+    <Compile Include="Format\ActObject.cs" />
+    <Compile Include="Format\ActResourceChipObject.cs" />
+    <Compile Include="Format\ActTextureResourceInfoObject.cs" />
+    <Compile Include="Format\ChipElement.cs" />
+    <Compile Include="Format\CodeObject.cs" />
+    <Compile Include="Format\McdFile.cs" />
+    <Compile Include="Format\McdObject.cs" />
+    <Compile Include="Format\MeshResourceInfoObject.cs" />
+    <Compile Include="Format\ObjectSerialization.cs" />
+    <Compile Include="Format\Properties\FileProperty.cs" />
+    <Compile Include="Format\PropertyGen\IPropertyGenerator.cs" />
+    <Compile Include="Format\PropertyGen\PropertyAttributes.cs" />
+    <Compile Include="Format\PropertyGen\PropertyObjectGenerator.cs" />
+    <Compile Include="Format\PropertyGen\PropertyValueChecker.cs" />
+    <Compile Include="Format\PropertyGen\SimpleObjectPropertyGenerator.cs" />
+    <Compile Include="Format\PropertyTable.cs" />
+    <Compile Include="Format\Serialization\BinaryInputStream.cs" />
+    <Compile Include="Format\Serialization\BinaryOutputStream.cs" />
+    <Compile Include="Format\Serialization\ISerializable.cs" />
+    <Compile Include="Format\Serialization\StreamExt.cs" />
+    <Compile Include="Format\Simple\Layer.cs" />
+    <Compile Include="Format\Simple\Resources.cs" />
+    <Compile Include="Format\Simple\Scene.cs" />
+    <Compile Include="FormCodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCodeEditor.Designer.cs">
+      <DependentUpon>FormCodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMultiPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMultiPreview.Designer.cs">
+      <DependentUpon>FormMultiPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPreview.Designer.cs">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormShowImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormShowImage.Designer.cs">
+      <DependentUpon>FormShowImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTest.Designer.cs">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\ListViewItemElement.cs" />
+    <Compile Include="UI\ListViewItemResource.cs" />
+    <Compile Include="UI\TreeNodes\AbstractNode.cs" />
+    <Compile Include="UI\TreeNodes\CodeNode.cs" />
+    <Compile Include="UI\TreeNodes\FileNode.cs" />
+    <Compile Include="UI\TreeNodes\KeyNode.cs" />
+    <Compile Include="UI\TreeNodes\LayerNode.cs" />
+    <Compile Include="UI\TreeNodes\MapLayoutNode.cs" />
+    <Compile Include="Utils\Task.cs" />
+    <EmbeddedResource Include="FormActFile.resx">
+      <DependentUpon>FormActFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCodeEditor.resx">
+      <DependentUpon>FormCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMultiPreview.resx">
+      <DependentUpon>FormMultiPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPreview.resx">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormShowImage.resx">
+      <DependentUpon>FormShowImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTest.resx">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
