@@ -103,18 +103,5 @@ namespace GS_ActEdit.UI.TreeNodes
             }
             return next;
         }
-
-        public string GetNameForResourceID(int id)
-        {
-            if (file.mcd == null)
-            {
-                return "???";
-            }
-            ChipElement chip = file.mcd.FindChip(id);
-            if (chip == null) return "???";
-            AbstractResourceInfoObject res = file.mcd.FindRes(chip.resourceID);
-            if (res == null) return "???";
-            return res.GetDisplayName();
-        }
     }
 }

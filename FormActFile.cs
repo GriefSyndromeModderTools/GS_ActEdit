@@ -46,7 +46,7 @@ namespace GS_ActEdit
             }
             foreach (Act2DMapLayoutObject.Element current in layout.elements)
             {
-                this.ListViewLayout.Items.Add(new ListViewItemElement(current, this));
+                this.ListViewLayout.Items.Add(new ListViewItemElement(current, file));
             }
         }
         public void AddElementToList()
@@ -55,7 +55,7 @@ namespace GS_ActEdit
             {
                 Act2DMapLayoutObject.Element element = new Act2DMapLayoutObject.Element();
                 this.current_layout.elements.Add(element);
-                this.ListViewLayout.Items.Add(new ListViewItemElement(element, this));
+                this.ListViewLayout.Items.Add(new ListViewItemElement(element, file));
             }
         }
         private void UpdateTreeViewMain()
@@ -207,7 +207,7 @@ namespace GS_ActEdit
             }
             foreach (ChipElement current in this.file.mcd.chips)
             {
-                this.ListViewResources.Items.Add(new ListViewItemResource(current.chipID, this));
+                this.ListViewResources.Items.Add(new ListViewItemResource(current.chipID, file));
             }
         }
         private void ListViewResources_MouseClick(object sender, MouseEventArgs e)
@@ -226,7 +226,7 @@ namespace GS_ActEdit
             }
             Act2DMapLayoutObject.Element element = Act2DMapLayoutObject.Element.CreateDefault(listViewItemResource.id);
             this.current_layout.elements.Add(element);
-            this.ListViewLayout.Items.Add(new ListViewItemElement(element, this));
+            this.ListViewLayout.Items.Add(new ListViewItemElement(element, file));
         }
         private void ListViewResources_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -328,7 +328,7 @@ namespace GS_ActEdit
                 {
                     int index = this.ListViewLayout.SelectedItems.OfType<ListViewItemElement>().First<ListViewItemElement>().Index;
                     this.current_layout.elements.Insert(index, elementFromData);
-                    this.ListViewLayout.Items.Insert(index, new ListViewItemElement(elementFromData, this));
+                    this.ListViewLayout.Items.Insert(index, new ListViewItemElement(elementFromData, file));
                 }
             }
         }
@@ -341,7 +341,7 @@ namespace GS_ActEdit
                 {
                     int index = this.ListViewLayout.SelectedItems.OfType<ListViewItemElement>().First<ListViewItemElement>().Index + 1;
                     this.current_layout.elements.Insert(index, elementFromData);
-                    this.ListViewLayout.Items.Insert(index, new ListViewItemElement(elementFromData, this));
+                    this.ListViewLayout.Items.Insert(index, new ListViewItemElement(elementFromData, file));
                 }
             }
         }
@@ -365,7 +365,8 @@ namespace GS_ActEdit
         }
         private void Menu_File_PreviewAllLayers_Click(object sender, EventArgs e)
         {
-            new FormMultiPreview(this.file).Show();
+            List<LayerRenderOption> layers = file.renderLayers;
+            new FormMultiPreview(this.file, layers).Show();
         }
         private void Menu_Element_ClearAll_Click(object sender, EventArgs e)
         {
@@ -382,6 +383,11 @@ namespace GS_ActEdit
             {
                 currentNodeAs.layer.CalculateAABB(this.file);
             }
+        }
+
+        private void setPreviewParametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormLayerRenderOptions(file).ShowDialog();
         }
     }
 }

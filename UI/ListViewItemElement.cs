@@ -11,14 +11,12 @@ namespace GS_ActEdit.UI
     class ListViewItemElement : ListViewItem
     {
         private Act2DMapLayoutObject.Element element;
-        private FormActFile form;
 
-        public ListViewItemElement(Act2DMapLayoutObject.Element element, FormActFile form)
+        public ListViewItemElement(Act2DMapLayoutObject.Element element, ActObject file)
         {
             this.element = element;
-            this.form = form;
 
-            this.Text = form.root.GetNameForResourceID(element.resourceID);
+            this.Text = file.GetNameForResourceID(element.resourceID);
             this.ImageIndex = 0;
         }
 

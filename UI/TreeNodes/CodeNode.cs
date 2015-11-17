@@ -11,12 +11,10 @@ namespace GS_ActEdit.UI.TreeNodes
     class CodeNode : AbstractNode
     {
         private CodeObject code;
-        private FormActFile form;
 
         public CodeNode(CodeObject code, FormActFile form)
         {
             this.code = code;
-            this.form = form;
 
             this.Text = "Code";
             this.ImageIndex = 6;

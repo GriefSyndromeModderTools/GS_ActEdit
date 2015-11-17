@@ -44,12 +44,16 @@ namespace GS_ActEdit.Format
         public McdObject mcd = null;
         private string root_folder;
 
+        public List<LayerRenderOption> renderLayers = new List<LayerRenderOption>();
+
         public void Read(BinaryInputStream s)
         {
             properties.ReadFromStream(s);
             code.Read(s);
             layers = s.ReadObjectArray<ActLayerObject>();
             resources = s.ReadObjectArray<AbstractActResourceObject>();
+
+            SetupDefaultRenderLayers();
         }
 
         public void Write(BinaryOutputStream s)
@@ -58,6 +62,29 @@ namespace GS_ActEdit.Format
             code.Write(s);
             s.WriteObjectArray(layers);
             s.WriteObjectArray(resources);
+        }
+
+        private void SetupDefaultRenderLayers()
+        {
+            TryAddLayerRender("layer_5", 0.85f);
+            TryAddLayerRender("layer_4", 0.70f);
+            TryAddLayerRender("layer_3", 0.55f);
+            TryAddLayerRender("layer_2", 0.30f);
+            TryAddLayerRender("layer_1", 0.00f);
+            TryAddLayerRender("layermain", 0.00f);
+            TryAddLayerRender("layer_block", 0.00f);
+            TryAddLayerRender("layer_0", 0.00f);
+            TryAddLayerRender("layer_F1", -0.25f);
+            TryAddLayerRender("layer_F0", -0.60f);
+        }
+
+        private void TryAddLayerRender(string name, float rx)
+        {
+            var l = FindLayerByName(name);
+            if (l != null)
+            {
+                renderLayers.Add(new LayerRenderOption(name, rx));
+            }
         }
 
         public void LinkRootFolder(string path)
@@ -205,6 +232,19 @@ namespace GS_ActEdit.Format
                     }
                 return bitmap;
             }
+        }
+
+        public string GetNameForResourceID(int id)
+        {
+            if (mcd == null)
+            {
+                return "???";
+            }
+            ChipElement chip = mcd.FindChip(id);
+            if (chip == null) return "???";
+            AbstractResourceInfoObject res = mcd.FindRes(chip.resourceID);
+            if (res == null) return "???";
+            return res.GetDisplayName();
         }
     }
 }

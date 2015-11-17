@@ -87,9 +87,6 @@ namespace GS_ActEdit.Format
                 var bitmap = file.CreateBitmapForResource(resourceID);
                 float w = bitmap.Width, h = bitmap.Height;
 
-                //TODO
-                if (Math.Abs(scale_x) != Math.Abs(scale_y)) return false;
-
                 double ww = w * Math.Abs(scale_x) / 2.0f;
                 double hh = h * Math.Abs(scale_y) / 2.0f;
 

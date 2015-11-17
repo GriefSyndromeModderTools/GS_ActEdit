@@ -63,6 +63,7 @@
     <Compile Include="Format\ActTextureResourceInfoObject.cs" />
     <Compile Include="Format\ChipElement.cs" />
     <Compile Include="Format\CodeObject.cs" />
+    <Compile Include="Format\LayerRenderOption.cs" />
     <Compile Include="Format\McdFile.cs" />
     <Compile Include="Format\McdObject.cs" />
     <Compile Include="Format\MeshResourceInfoObject.cs" />
@@ -86,6 +87,12 @@
     </Compile>
     <Compile Include="FormCodeEditor.Designer.cs">
       <DependentUpon>FormCodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLayerRenderOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLayerRenderOptions.Designer.cs">
+      <DependentUpon>FormLayerRenderOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMultiPreview.cs">
       <SubType>Form</SubType>
@@ -127,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCodeEditor.resx">
       <DependentUpon>FormCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLayerRenderOptions.resx">
+      <DependentUpon>FormLayerRenderOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMultiPreview.resx">
       <DependentUpon>FormMultiPreview.cs</DependentUpon>

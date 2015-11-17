@@ -15,11 +15,13 @@ namespace GS_ActEdit
     partial class FormMultiPreview : Form
     {
         private ActObject file;
+        private List<LayerRenderOption> layers;
 
-        public FormMultiPreview(ActObject file)
+        public FormMultiPreview(ActObject file, List<LayerRenderOption> layers)
         {
             InitializeComponent();
             this.file = file;
+            this.layers = layers;
 
             var start_layer = file.FindLayerByName("start");
             if (start_layer != null)
@@ -56,72 +58,67 @@ namespace GS_ActEdit
             var bitmap = file.CreateBitmapForResource(e.resourceID);
             if (bitmap == null) return;
 
+            var saved = g.Save();
             g.TranslateTransform(e.x, e.y);
             g.TranslateTransform(bitmap.Width * 0.5f, bitmap.Height * 0.5f);
             g.RotateTransform(e.rotate);
             g.ScaleTransform(e.scale_x, e.scale_y);
             g.TranslateTransform(-bitmap.Width * 0.5f, -bitmap.Height * 0.5f);
             g.DrawImage(bitmap, new PointF(0.0f, 0.0f));
+            g.Restore(saved);
         }
 
-        private void RenderLayer(Graphics g, int x, int y, ActLayerObject layer)
+        private void RenderLayer(Graphics g, float x, float y, ActLayerObject layer)
         {
-            Matrix te = new Matrix();
-            te.Translate(-x, -y);
-            var tr = g.Transform.Clone();
-            tr.Multiply(te);
+            var saved = g.Save();
+            g.TranslateTransform(-x, -y);
             foreach (var element in layer.GetLayout().elements)
             {
-                g.Transform = tr;
                 DrawElement(g, element);
             }
+            g.Restore(saved);
         }
 
-        private void RenderLayerWithCameraRatio(Graphics g, int x, int y, float ratio, ActLayerObject l)
+        private void RenderLayerWithCameraRatio(Graphics g, float x, float y, LayerRenderOption layer)
         {
-            var te_origin = g.Transform.Clone();
-            RenderLayer(g, (int)(x * (1.0f - ratio)) - 400, y - 300, l);
-            g.Transform = te_origin;
+            RenderLayer(g, layer.CalculateX(x) - 400.0f, layer.CalculateY(y) - 300.0f, file.FindLayerByName(layer.name));
         }
 
-        private void RenderAll(Graphics g, int x, int y)
+        private void RenderLayerWithCameraRatio(Graphics g, float x, float y, float ratio, ActLayerObject l)
+        {
+            RenderLayer(g, (x * (1.0f - ratio)) - 400, y - 300, l);
+        }
+
+        private void RenderAll(Graphics g, float x, float y)
         {
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
             g.PixelOffsetMode = PixelOffsetMode.Half;
             g.SmoothingMode = SmoothingMode.HighSpeed;
             g.CompositingQuality = CompositingQuality.HighSpeed;
 
-            RenderLayerWithCameraRatio(g, x, y, 0.85f, file.FindLayerByName("layer_5"));
-            RenderLayerWithCameraRatio(g, x, y, 0.70f, file.FindLayerByName("layer_4"));
-            RenderLayerWithCameraRatio(g, x, y, 0.55f, file.FindLayerByName("layer_3"));
-            RenderLayerWithCameraRatio(g, x, y, 0.30f, file.FindLayerByName("layer_2"));
-            RenderLayerWithCameraRatio(g, x, y, 0.00f, file.FindLayerByName("layer_1"));
-
-            RenderLayerWithCameraRatio(g, x, y, 0.00f, file.FindLayerByName("layermain"));
-            RenderLayerWithCameraRatio(g, x, y, 0.00f, file.FindLayerByName("layer_block"));
-            RenderLayerWithCameraRatio(g, x, y, 0.00f, file.FindLayerByName("layer_0"));
-
-            RenderLayerWithCameraRatio(g, x, y, -0.25f, file.FindLayerByName("layer_F1"));
-            RenderLayerWithCameraRatio(g, x, y, -0.60f, file.FindLayerByName("layer_F0"));
+            foreach (var l in layers)
+            {
+                RenderLayerWithCameraRatio(g, x, y, l);
+            }
         }
 
-        int camera_x, camera_y;
+        float camera_x, camera_y;
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.Clear(Color.Black);
 
-            int screen_x = pictureBox1.ClientSize.Width / 2;
-            int screen_y = pictureBox1.ClientSize.Height / 2;
+            float screen_x = pictureBox1.ClientSize.Width / 2.0f;
+            float screen_y = pictureBox1.ClientSize.Height / 2.0f;
             float scale;
             if (screen_x * 600 > screen_y * 800)
             {
-                scale = (float)screen_y / 300;
+                scale = screen_y / 300;
                 e.Graphics.TranslateTransform(screen_x - scale * 400.0f, 0.0f);
             }
             else
             {
-                scale = (float)screen_x / 400;
+                scale = screen_x / 400;
                 e.Graphics.TranslateTransform(0.0f, screen_y - scale * 300.0f);
             }
             e.Graphics.ScaleTransform(scale, scale);

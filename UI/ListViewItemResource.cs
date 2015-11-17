@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GS_ActEdit.Format;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,17 @@ namespace GS_ActEdit.UI
     class ListViewItemResource : ListViewItem
     {
         public int id;
-        public Form form;
 
-        public ListViewItemResource(int id, FormActFile form)
+        public ListViewItemResource(int id, ActObject file)
         {
             this.id = id;
-            this.form = form;
 
             this.Text = id.ToString();
             this.ImageIndex = 5;
 
             var sub = new ListViewSubItem();
             sub.Name = "TextureName";
-            sub.Text = form.root.GetNameForResourceID(id);
+            sub.Text = file.GetNameForResourceID(id);
             this.SubItems.Add(sub);
         }
     }

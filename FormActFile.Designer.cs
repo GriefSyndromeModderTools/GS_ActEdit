@@ -87,6 +87,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setPreviewParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ContextMenuFile.SuspendLayout();
             this.ContextMenuFileLayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -161,36 +164,39 @@
             this.ContextMenuFile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
+            this.toolStripSeparator3,
             this.refreshToolStripMenuItem,
-            this.previewAllLayersToolStripMenuItem});
+            this.toolStripSeparator2,
+            this.previewAllLayersToolStripMenuItem,
+            this.setPreviewParametersToolStripMenuItem});
             this.ContextMenuFile.Name = "ContextMenuFile";
-            this.ContextMenuFile.Size = new System.Drawing.Size(176, 92);
+            this.ContextMenuFile.Size = new System.Drawing.Size(224, 148);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.Menu_File_Save_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.saveAsToolStripMenuItem.Text = "Save as...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.Menu_File_SaveAs_Click);
             // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.Menu_File_Refresh_Click);
             // 
             // previewAllLayersToolStripMenuItem
             // 
             this.previewAllLayersToolStripMenuItem.Name = "previewAllLayersToolStripMenuItem";
-            this.previewAllLayersToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.previewAllLayersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.previewAllLayersToolStripMenuItem.Text = "Preview all layers";
             this.previewAllLayersToolStripMenuItem.Click += new System.EventHandler(this.Menu_File_PreviewAllLayers_Click);
             // 
@@ -509,6 +515,23 @@
             this.clearAllToolStripMenuItem.Text = "Clear all";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.Menu_Element_ClearAll_Click);
             // 
+            // setPreviewParametersToolStripMenuItem
+            // 
+            this.setPreviewParametersToolStripMenuItem.Name = "setPreviewParametersToolStripMenuItem";
+            this.setPreviewParametersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.setPreviewParametersToolStripMenuItem.Text = "Set preview parameters...";
+            this.setPreviewParametersToolStripMenuItem.Click += new System.EventHandler(this.setPreviewParametersToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(220, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(220, 6);
+            // 
             // FormActFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -587,5 +610,8 @@
         private System.Windows.Forms.ToolStripMenuItem previewAllLayersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculateAABBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem setPreviewParametersToolStripMenuItem;
     }
 }
